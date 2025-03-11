@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>Admin - NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,9 +13,9 @@
   <body>
     <header>
       <% if admin_signed_in? %>
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-primery" %>
       <% else %>
-        <%= link_to 'ログイン', new_admin_session_path %>
+        <%= link_to 'ログイン', new_admin_session_path, class: "btn btn-primery" %>
       <% end %>
     </header>
     <main class="container">
