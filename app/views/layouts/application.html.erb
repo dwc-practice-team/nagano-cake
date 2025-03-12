@@ -12,6 +12,42 @@
 
   <body>
     <header>
+      <nav class="navbar">
+        <div class="container">
+          <span class="navbar-brand">
+            LOGO
+          </span>
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'About', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '商品一覧', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'About', about_path, class: "nav-link btn btn-light" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'About', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '商品一覧', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '新規登録', about_path, class: "nav-link btn btn-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログイン', about_path, class: "nav-link btn btn-light" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main class="container">
       <%= yield %>
