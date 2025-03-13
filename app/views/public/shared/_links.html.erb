@@ -6,7 +6,10 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <p>
+    <%= link_to "こちら", new_registration_path(resource_name) %>
+    <span> から新規登録を行ってください。</span>
+  </p>
 <% end %>
 
 
