@@ -60,7 +60,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    root_path
+    my_page_path
   end
 
   def after_sign_out_path_for(resource)
