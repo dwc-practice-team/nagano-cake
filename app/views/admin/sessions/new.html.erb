@@ -1,30 +1,30 @@
 <div class="row mt-5">
-  <div class="col-md-6">
-    <h2 class="bg-gray text-center fw-bold mb-3">管理者ログイン</h2>
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4 mb-5">管理者ログイン</h3>
   </div>
 </div>
 <div class="card border-0">
   <div class="card-body">
     <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
-      <div class="row justify-content-center mb-2">
-        <div class="col-3 field">
+      <div class="row justify-content-center mb-3">
+        <div class="col-2 offset-1 field">
           <%= f.label :email, "メールアドレス", class: "form-label" %>
         </div>
-        <div class="col-9 field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <div class="col-6 field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control border-dark" %>
         </div>
       </div>
-      <div class="row justify-content-center mb-2">
-        <div class="col-3 field">
+      <div class="row justify-content-center mb-5">
+        <div class="col-2  offset-1 field">
           <%= f.label :password, "パスワード", class: "form-label" %>
         </div>
-        <div class="col-9 field">
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        <div class="col-6 field">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control border-dark" %>
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-md-6 actions d-grid">
-          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        <div class="col-4 offset-1 actions">
+          <%= f.submit "ログイン", class: "btn btn-primary px-5" %>
         </div>
       </div>
     <% end %>
