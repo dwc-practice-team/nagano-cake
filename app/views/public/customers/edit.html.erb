@@ -1,2 +1,63 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="row mt-5">
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">会員情報編集</h3>
+  </div>
+</div>
+<div class="mt-5">
+  <%= form_with model: @customer, url: customers_information_path(@customer) do |f| %>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :name, "氏名" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name, class: "form-control border-dark" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :name, "フリガナ" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name_kana, class: "form-control border-dark" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name_kana, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :postal_code, "郵便番号" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :postal_code, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :address, "住所" %>
+      </div>
+      <div class="col-9">
+        <%= f.text_field :address, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :telephone_number, "電話番号" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :telephone_number, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :email, class: "form-control border-dark" %>
+      </div>
+    </div>
+  <% end %>
+</div>
