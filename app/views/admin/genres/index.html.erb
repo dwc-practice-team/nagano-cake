@@ -18,3 +18,39 @@
     </div>
   <% end %>
 </div>
+
+<table class="mt-5">
+  <thead class="bg-gray">
+    <tr>
+      <div class="row">
+        <div class="col-4">
+          <th class="text-center" col="2">
+            ジャンル
+          </th>
+        </div>
+        <div class="col-2">
+          <th col="1">
+          </th>
+        </div>
+      </div>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <div class="row">
+          <div class="col-4">
+            <td col="2">
+              <%= genre.name %>
+            </td>
+          </div>
+          <div class="col-2">
+            <td col="1">
+              <%= link_to '編集する', edit_admin_genre_path(genre), class: "btn btn-success" %>
+            </td>
+          </div>
+        </div>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
