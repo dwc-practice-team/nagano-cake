@@ -20,6 +20,18 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
+    @genre = Genre.find(params[:id])
+  end
+
+  def update
+    @genre = Genre.find(params[:id])
+    if @genre.update(genre_params)
+      flash[:notice] = "変更を保存しました"
+      redirect_to admin_genres_path
+    else
+      flash.now[:danger] ="変更の保存に失敗しました"
+      render :edit
+    end
   end
 
   private

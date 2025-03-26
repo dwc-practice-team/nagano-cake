@@ -5,6 +5,7 @@
 </div>
 <div class="mt-5">
   <%= form_with model: @genre, url: admin_genres_path do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row">
       <div class="col-2 fw-bold">
         <%= f.label :name, "ジャンル名" %>
@@ -19,13 +20,13 @@
   <% end %>
 </div>
 
-<table class="table mt-5">
+<table class="table mt-5" style="width:40%;">
   <thead class="bg-light">
     <tr>
-      <th scope="col" class="text-center">
+      <th scope="col" class="text-center" style="width:60%;">
         ジャンル
       </th>
-      <th scope="col">
+      <th scope="col" style="width:40%;">
       </th>
     </tr>
   </thead>
@@ -36,7 +37,7 @@
           <%= genre.name %>
         </td>
         <td>
-          <%= link_to '編集する', edit_admin_genre_path(genre), class: "btn btn-success" %>
+          <%= link_to '編集する', edit_admin_genre_path(genre), class: "btn btn-success px-4" %>
         </td>
       </tr>
     <% end %>
