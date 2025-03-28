@@ -1,2 +1,67 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="row mt-5">
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">商品新規登録</h3>
+  </div>
+</div>
+<div class="mt-5">
+  <%= form_with model: @item, url: admin_items_path do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :image, "商品画像" %>
+      </div>
+      <div class="col-7">
+        <%= f.file_field :image, accept: "image/*", class: "form_control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :name, "商品名" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_field :name, palceholder: "商品名", class: "form_control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :introduction, "商品説明" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_area :introduction, palceholder: "ここに説明文を記述します", class: "form_control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :genre_id, "ジャンル" %>
+      </div>
+      <div class="col-7">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "--選択してください--"}, class: "form_control" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :price, "税抜価格" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_field :price, palceholder: "1000", class: "form_control" %>円
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :is_active, "販売ステータス" %>
+      </div>
+      <div class="col-7">
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :is_active_true, "販売中" %>
+        　
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active_false, "販売停止中" %>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-2 offset-5">
+        <%= f.submit '新規登録', class: "form-control btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
