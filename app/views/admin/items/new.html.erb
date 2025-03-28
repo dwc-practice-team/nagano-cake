@@ -11,7 +11,7 @@
         <%= f.label :image, "商品画像" %>
       </div>
       <div class="col-7">
-        <%= f.file_field :image, accept: "image/*", class: "form_control" %>
+        <%= f.file_field :image, accept: "image/*" %>
       </div>
     </div>
     <div class="row mb-3">
@@ -19,7 +19,7 @@
         <%= f.label :name, "商品名" %>
       </div>
       <div class="col-7">
-        <%= f.text_field :name, palceholder: "商品名", class: "form_control" %>
+        <%= f.text_field :name, placeholder: "商品名", size: 37 %>
       </div>
     </div>
     <div class="row mb-3">
@@ -27,15 +27,16 @@
         <%= f.label :introduction, "商品説明" %>
       </div>
       <div class="col-7">
-        <%= f.text_area :introduction, palceholder: "ここに説明文を記述します", class: "form_control" %>
+        <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "40x8" %>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-2 offset-3">
         <%= f.label :genre_id, "ジャンル" %>
       </div>
-      <div class="col-7">
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "--選択してください--"}, class: "form_control" %>
+      <div class="col-7 custom-select-wrapper">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "--選択してください--" }, { class: "custom-select border-dark w-50" } %>
+        <i class="fa-solid fa-caret-down custom-arrow"></i>
       </div>
     </div>
     <div class="row mb-3">
@@ -43,7 +44,7 @@
         <%= f.label :price, "税抜価格" %>
       </div>
       <div class="col-7">
-        <%= f.text_field :price, palceholder: "1000", class: "form_control" %>円
+        <%= f.text_field :price, placeholder: "1000", size: 37 %>円
       </div>
     </div>
     <div class="row mb-3">
