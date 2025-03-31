@@ -1,2 +1,68 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class="row my-5">
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">商品詳細</h3>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-4">
+    <%= image_tag @item.get_image, class: "w-100" %>
+  </div>
+  <div class="col-8">
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <p>商品名</p>
+        </div>
+        <div class="col-8" style="font-size:20px;">
+          <%= @item.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p>商品名</p>
+        </div>
+        <div class="col-8" style="font-size:20px;">
+          <%= @item.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p>商品説明</p>
+        </div>
+        <div class="col-8 text-wrap" style="font-size:20px;">
+          <%= @item.introduction %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p>ジャンル</p>
+        </div>
+        <div class="col-8" style="font-size:20px;">
+          <%= @item.genre.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p>税込価格<br>(税抜価格)</p>
+        </div>
+        <div class="col-8" style="font-size:20px;">
+          <%= @item.tax_include_price %>
+          (<%= @item.price %>) 円
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p>販売ステータス</p>
+        </div>
+        <div class="col-8" style="font-size:20px;">
+          <%= @item.is_active %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 offset-2 mt-3" style="font-size:20px;">
+          <%= link_to '編集する', edit_admin_item_path(@item), class: "form-control btn btn-success px-4" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
