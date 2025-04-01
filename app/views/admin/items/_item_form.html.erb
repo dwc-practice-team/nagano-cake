@@ -1,0 +1,63 @@
+<div class="mt-5">
+  <%= form_with model: [:admin, item] do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :image, "商品画像" %>
+      </div>
+      <div class="col-7">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :name, "商品名" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_field :name, placeholder: "商品名", size: 37 %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :introduction, "商品説明" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "40x8" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :genre_id, "ジャンル" %>
+      </div>
+      <div class="col-7 custom-select-wrapper">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "--選択してください--" }, { class: "custom-select border-dark w-50" } %>
+        <i class="fa-solid fa-caret-down custom-arrow"></i>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :price, "税抜価格" %>
+      </div>
+      <div class="col-7">
+        <%= f.text_field :price, placeholder: "1000", size: 37 %>円
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2 offset-3">
+        <%= f.label :is_active, "販売ステータス" %>
+      </div>
+      <div class="col-7">
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active_true, "販売中" %>
+        　
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active_false, "販売停止中" %>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-2 offset-6">
+        <%= render 'submit_button', f: f, submit_label: submit_label %>
+      </div>
+    </div>
+  <% end %>
+</div>
