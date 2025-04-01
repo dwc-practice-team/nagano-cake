@@ -3,20 +3,12 @@
     <h3 class="bg-gray d-inline-block text-center fw-bold px-4">商品詳細</h3>
   </div>
 </div>
-<div class="row mt-5">
-  <div class="col-4">
+<div class="row">
+  <div class="col-4 mt-5">
     <%= image_tag @item.get_image, class: "w-100" %>
   </div>
-  <div class="col-8">
+  <div class="col-8 mt-5">
     <div class="container">
-      <div class="row">
-        <div class="col-3">
-          <p>商品名</p>
-        </div>
-        <div class="col-8" style="font-size:20px;">
-          <%= @item.name %>
-        </div>
-      </div>
       <div class="row">
         <div class="col-3">
           <p>商品名</p>
@@ -54,8 +46,8 @@
         <div class="col-3">
           <p>販売ステータス</p>
         </div>
-        <div class="col-8" style="font-size:20px;">
-          <%= @item.is_active %>
+        <div class="col-8 <%= @item.is_active ? "text-success" : "text-secondary" %>" style="font-size:20px; font-weight:bold;">
+          <%= @item.is_active ? "販売中" : "販売停止中" %>
         </div>
       </div>
       <div class="row">
