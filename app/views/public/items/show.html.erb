@@ -1,2 +1,33 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="row mt-5">
+  <div class="col-2">
+    <p>ジャンル検索‐後ほど実装予定</p>
+  </div>
+  <div class="col-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+          <%= image_tag @item.get_image, class: "w-100" %>
+        </div>
+        <div class="col-7 d-flex align-items-start flex-column">
+          <div class="mb-3" style="font-size:1.75rem; font-weight:bold;">
+            <%= @item.name %>
+          </div>
+          <div class="mb-auto">
+            <%= simple_format @item.introduction %>
+          </div>
+          <div>
+            <span style="font-size:1.75rem; font-weight:bold;">
+              ￥
+            </span>
+            <span style="font-size:1.75rem; font-weight:bold;">
+              <%= @item.price.to_s(:delimited) %>
+            </span>
+            <span>
+              (税込)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
