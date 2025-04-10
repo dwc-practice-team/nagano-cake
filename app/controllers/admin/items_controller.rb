@@ -3,7 +3,11 @@ class Admin::ItemsController < ApplicationController
   layout 'admin'
 
   def index
-    @items = Item.page(params[:page])
+    if params[:search].present?
+      @items = Item.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(10)
+    else
+      @items = Item.page(params[:page]).per(10)
+    end
   end
 
   def new
