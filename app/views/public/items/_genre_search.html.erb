@@ -1,0 +1,10 @@
+<div class="col-2">
+  <div class="border border-dark">
+    <p class="text-center border-bottom border-dark px-3" style="font-weight:bold;">ジャンル検索</p>
+    <% genres.each do |genre| %>
+      <p class="px-3" style="color:black;">
+        <%= link_to genre.name, items_path(genre_name: genre.name), class: "text-dark" %>
+      </p>
+    <% end %>
+  </div>
+</div>

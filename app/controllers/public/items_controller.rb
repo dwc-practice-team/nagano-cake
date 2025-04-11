@@ -1,8 +1,13 @@
 class Public::ItemsController < ApplicationController
   def index
+    @genres = Genre.all
     if params[:search].present?
-      @items = Item.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(8)
-      @all_items = Item.where('name LIKE ?', "%#{params[:search]}%").all
+      @all_items = Item.where('name LIKE ?', "%#{params[:search]}%")
+      @items = @all_items.page(params[:page]).per(8)
+    elsif params[:genre_name].present?
+      @genre = Genre.find_by(name: params[:genre_name])
+      @all_items = Item.where(genre_id: @genre&.id)
+      @items = @all_items.page(params[:page]).per(8)
     else
       @items = Item.page(params[:page]).per(8)
       @all_items = Item.all
@@ -11,5 +16,6 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 end
