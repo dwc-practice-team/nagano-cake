@@ -1,2 +1,7 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<div class="row mt-5">
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">配送先編集</h3>
+  </div>
+</div>
+<% submit_label = "変更内容を保存" %>
+<%= render 'address_form', address: @address, url: address_path(@address), submit_label: submit_label %>
