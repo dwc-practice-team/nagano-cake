@@ -26,16 +26,21 @@
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-7 offset-5">
-          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-            <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.hidden_field :customer_id, :value => current_customer.id %>
-            <%= f.select :amount, *[1..10], placeholder: "個数選択" %>
-            <%= f.submit "カートに入れる", class: "btn btn-success px-4" %>
-          <% end %>
-        </div>
-      </div>
     </div>
+
+        <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="container mt-5">
+            <div class="row">
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <div class="col-3 offset-5">
+                <%= f.select :amount, *[1..10], {include_blank: "個数選択"}, {class: "form-control ml-4"} %>
+              </div>
+              <div class="col-3 ml-5">
+                <%= f.submit "カートに入れる", class: "btn btn-success px-4" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
   </div>
 </div>
