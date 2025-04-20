@@ -16,7 +16,7 @@
             <%= image_tag item.get_image, size: "212x159" %><br>
             <%= item.name %><br>
             <span>￥</span>
-            <%= item.price.to_s(:delimited) %>
+            <%= item.tax_include_price.to_s(:delimited) %>
           </div>
         <% end %>
       <% end %>

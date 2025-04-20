@@ -18,7 +18,7 @@
               ￥
             </span>
             <span style="font-size:1.75rem; font-weight:bold;">
-              <%= @item.price.to_s(:delimited) %>
+              <%= @item.tax_include_price.to_s(:delimited) %>
             </span>
             <span>
               (税込)
@@ -33,7 +33,7 @@
         <div class="row">
           <%= f.hidden_field :item_id, :value => @item.id %>
           <div class="col-3 offset-5">
-            <%= f.select :amount, *[1..10], {include_blank: "個数選択"}, {class: "form-control ml-4"} %>
+            <%= f.select :amount, [*1..10], {include_blank: "個数選択"}, {class: "form-control ml-4"} %>
           </div>
           <div class="col-3 ml-5">
             <%= f.submit "カートに入れる", class: "btn btn-success px-4" %>
