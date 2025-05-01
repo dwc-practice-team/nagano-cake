@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_cart_items, only: [:new, :confirm, :create]
+
   def new
     @order = Order.new
   end
@@ -19,6 +21,19 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+  def create
+    @order = current_customer.orders.new(order_params)
+    @order.shipping_cost = 800
+    @order.total_payment = @order.shipping_cost + @cart_items.sum(&:subtotal)
+    if @order.save
+      @order.create_order_details(current_customer)
+      redirect_to orders_thanks_path
+    else
+      flash[:alert] = "注文の確定に失敗しました。"
+      render :new
+    end
+  end
+
   def thanks
   end
 
@@ -32,5 +47,10 @@ class Public::OrdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :payment_method)
+  end
+
+  def ensure_cart_items
+    @cart_items = current_customer.cart_items.includes(:item)
+    redirect_to items_path unless @cart_items.first
   end
 end
