@@ -4,7 +4,35 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      status:
+        waiting_deposit: "入金待ち"
+        confirm_deposit: "入金確認"
+        in_production: "製作中"
+        preparing_shipment: "発送準備中"
+        shipped: "発送済み"
   activerecord:
+    attributes:
+      item:
+        image: "画像"
+        name: "商品名"
+        introduction: "商品説明"
+        price: "税抜価格"
+      cart_item:
+        amount: "数量"
+      customer:
+        email: "メールアドレス"
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "セイ"
+        first_name_kana: "メイ"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        current_password: "現在のパスワード"
+      genre:
+        name: "ジャンル名"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
