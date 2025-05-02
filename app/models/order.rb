@@ -40,4 +40,8 @@ class Order < ApplicationRecord
       cart_items.destroy_all
     end
   end
+
+  def order_count
+    order_details.sum(:amount)
+  end
 end
