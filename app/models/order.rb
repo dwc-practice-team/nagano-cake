@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   validates :total_payment, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   enum payment_method: { credit_card: 0, transfer: 1 }
-  enum status: { wating_deposit: 0, confirm_deposit: 1, in_production: 2, preparing_shipment: 3, shipped: 4 }
+  enum status: { waiting_deposit: 0, confirm_deposit: 1, in_production: 2, preparing_shipment: 3, shipped: 4 }
 
   def get_shipping_infomation_from(resource)
     class_name = resource.class.name
@@ -39,5 +39,9 @@ class Order < ApplicationRecord
       end
       cart_items.destroy_all
     end
+  end
+
+  def order_count
+    order_details.sum(:amount)
   end
 end
