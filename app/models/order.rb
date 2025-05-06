@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  after_update :log_status_change
+
   belongs_to :customer
   has_many :order_details
   has_many :items, through: :order_details
@@ -43,5 +45,21 @@ class Order < ApplicationRecord
 
   def order_count
     order_details.sum(:amount)
+  end
+
+  def update_status_based_on_details
+    if order_details.where(making_status: "in_production").exists?
+      update(status: "in_production")
+    elsif order_details.where.not(making_status: "production_complete").empty?
+      update(status: "preparing_shipment")
+    end
+  end
+
+  private
+
+  def log_status_change
+    if saved_change_to_status?
+      Rails.logger.info "Order ##{id} のステータスが変更されました: #{status_before_last_save} → #{status}"
+    end
   end
 end

@@ -1,4 +1,6 @@
 class OrderDetail < ApplicationRecord
+  after_update :log_status_change
+
   belongs_to :order
   belongs_to :item
 
@@ -10,5 +12,13 @@ class OrderDetail < ApplicationRecord
 
   def subtotal
     price * amount
+  end
+
+  private
+
+  def log_status_change
+    if saved_change_to_making_status?
+      Rails.logger.info "OrderDetail ##{id} のmaking_statusが変更されました: #{making_status_before_last_save} → #{making_status}"
+    end
   end
 end

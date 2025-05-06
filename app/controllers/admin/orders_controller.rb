@@ -5,12 +5,18 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: @order)
+    @total_price = 0
   end
 
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
       flash[:notice] = "更新しました。"
+      if @order.confirm_deposit?
+        @order.order_details.each do |order_detail|
+          order_detail.update(making_status: "pending_production")
+        end
+      end
       redirect_to admin_order_path(@order)
     else
       flash[:alert] = "更新に失敗しました。"

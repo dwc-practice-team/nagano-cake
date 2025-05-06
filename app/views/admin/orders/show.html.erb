@@ -45,16 +45,24 @@
             <td><%= order_detail.price %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.subtotal.to_s(:delimited) %></td>
-            <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail), method: :patch do |f| %>
+            <%= form_with model: [:admin, @order, order_detail], local: true do |f| %>
             <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map{ |making_status| [I18n.t("enums.order_detail.making_status.#{making_status}"), making_status] } %></td>
             <td><%= f.submit "更新", class: "btn btn-success" %></td>
             <% end %>
           </tr>
+          <% @total_price += order_detail.subtotal %>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div class="col-4">
-
+  <div class="col-2 offset-1 d-flex flex-column justify-content-end">
+    <p style="font-weight:bold;">商品合計</p>
+    <p style="font-weight:bold;">送料</p>
+    <p style="font-weight:bold;">請求金額合計</p>
+  </div>
+  <div class="col-1 d-flex flex-column justify-content-end align-items-end">
+    <p class="text-end"><%= @total_price.to_s(:delimited) %>円</p>
+    <p class="text-end"><%= @order.shipping_cost.to_s(:delimited) %>円</p>
+    <p class="text-end" style="font-weight:bold;"><%= (@total_price + @order.shipping_cost).to_s(:delimited) %>円</p>
   </div>
 </div>
