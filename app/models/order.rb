@@ -47,6 +47,10 @@ class Order < ApplicationRecord
     order_details.sum(:amount)
   end
 
+  def total_price
+    order_details.sum(&:subtotal)
+  end
+
   def update_status_based_on_details
     if order_details.where(making_status: "in_production").exists?
       update(status: "in_production")

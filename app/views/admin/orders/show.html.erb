@@ -50,7 +50,6 @@
             <td><%= f.submit "更新", class: "btn btn-success" %></td>
             <% end %>
           </tr>
-          <% @total_price += order_detail.subtotal %>
         <% end %>
       </tbody>
     </table>
@@ -61,8 +60,8 @@
     <p style="font-weight:bold;">請求金額合計</p>
   </div>
   <div class="col-1 d-flex flex-column justify-content-end align-items-end">
-    <p class="text-end"><%= @total_price.to_s(:delimited) %>円</p>
+    <p class="text-end"><%= @order.total_price.to_s(:delimited) %>円</p>
     <p class="text-end"><%= @order.shipping_cost.to_s(:delimited) %>円</p>
-    <p class="text-end" style="font-weight:bold;"><%= (@total_price + @order.shipping_cost).to_s(:delimited) %>円</p>
+    <p class="text-end" style="font-weight:bold;"><%= @order.total_payment.to_s(:delimited) %>円</p>
   </div>
 </div>
