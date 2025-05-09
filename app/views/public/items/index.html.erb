@@ -12,11 +12,10 @@
     <div class="d-flex flex-wrap mt-3">
       <% @items.each do |item| %>
         <%= link_to item_path(item) do %>
-          <div class="mr-3 mb-3" style="font-weight:bold; color:black;">
-            <%= image_tag item.get_image, size: "212x159" %><br>
-            <%= item.name %><br>
-            <span>￥</span>
-            <%= item.tax_include_price.to_s(:delimited) %>
+          <div class="mr-3" style="font-weight:bold; color:black;">
+            <p><%= image_tag item.get_image, size: "212x140" %></p>
+            <p><%= item.name %></p>
+            <p>￥<%= item.tax_include_price.to_s(:delimited) %></p>
           </div>
         <% end %>
       <% end %>
