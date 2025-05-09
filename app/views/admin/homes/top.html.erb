@@ -1,29 +1,39 @@
 <div class="row mt-5">
-  <div class="col-4 offset-1">
-    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">注文履歴一覧</h3>
+  <div class="col-5 offset-1">
+    <% if params[:customer_id].present? %>
+      <h3 class="bg-gray d-inline-block text-center fw-bold px-4"><%= @customer.full_name %>さんの注文履歴</h3>
+    <% else %>
+      <h3 class="bg-gray d-inline-block text-center fw-bold px-4">注文履歴一覧</h3>
+    <% end %>
   </div>
 </div>
-<div class="mt-3">
-  <table class="table">
-    <thead class="bg-light">
-      <tr>
-        <th>購入日時</th>
-        <th>購入者</th>
-        <th>注文個数</th>
-        <th>注文ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
+<div class="row mt-3">
+  <div class="col-10 mx-auto">
+    <table class="table">
+      <thead class="bg-light">
         <tr>
-          <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order), class: "text-dark" %></td>
-          <td><%= order.customer.full_name %></td>
-          <td><%= order.order_count %></td>
-          <td><%= order.status_i18n %></td>
+          <th>購入日時</th>
+          <% unless params[:customer_id].present? %>
+           <th>購入者</th>
+          <% end %>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order), class: "text-dark" %></td>
+            <% unless params[:customer_id].present? %>
+              <td><%= order.customer.full_name %></td>
+            <% end %>
+            <td><%= order.order_count %></td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="row justify-content-center mt-3">
   <div class="col-3 text-center">

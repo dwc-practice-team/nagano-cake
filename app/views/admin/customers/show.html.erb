@@ -29,7 +29,7 @@
     <p class="<%= @customer.is_active ? "text-success" : "text-secondary" %>" style="font-weight:bold;"><%= @customer.is_active ? "有効" : "退会" %></p>
     <p>
       <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success mr-5" %>
-      <%= link_to "注文履歴一覧を見る",  admin_root_path, class: "btn btn-primary ml-5" %>
+      <%= link_to "注文履歴一覧を見る",  admin_root_path(customer_id: @customer.id), class: "btn btn-primary ml-5" %>
     </p>
   </div>
 </div>
