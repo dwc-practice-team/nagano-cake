@@ -1,7 +1,8 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
+
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items.includes(:item)
     @total_price = 0
   end
 
@@ -19,6 +20,13 @@ class Public::CartItemsController < ApplicationController
       flash.now[:danger] = "カートへの商品追加に失敗しました"
       render 'items/show'
     end
+  end
+
+  def update
+    @cart_item = CartItem.find_by(id: params[:id], customer_id: current_customer.id)
+    @cart_item.update(cart_item_params)
+    flash[:notice] = "カート内情報を更新しました。"
+    redirect_to cart_items_path
   end
 
   def destroy
