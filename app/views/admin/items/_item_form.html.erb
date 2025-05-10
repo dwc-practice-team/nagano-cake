@@ -47,14 +47,14 @@
         <%= f.label :is_active, "販売ステータス" %>
       </div>
       <div class="col-7">
-        <%= f.radio_button :is_active, true %>
-        <%= f.label :is_active_true, "販売中" %>
+        <%= f.radio_button :is_active, "available" %>
+        <%= f.label :is_active_available, "販売中" %>
         　
-        <%= f.radio_button :is_active, false %>
-        <%= f.label :is_active_false, "販売停止中" %>
+        <%= f.radio_button :is_active, "unavailable" %>
+        <%= f.label :is_active_unavailable, "販売停止中" %>
       </div>
     </div>
-    <div class="row mt-1">
+    <div class="row my-1">
       <div class="col-2 offset-6">
         <%= render 'submit_button', f: f, submit_label: submit_label %>
       </div>

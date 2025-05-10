@@ -31,7 +31,7 @@
             </td>
             <td><%= item.price %></td>
             <td><%= item.genre.name %></td>
-            <td class="<%= item.is_active ? "text-success" : "text-secondary" %>" style="font-weight:bold;"><%= item.is_active ? "販売中" : "販売停止中" %></td>
+            <td class="<%= item.available? ? "text-success" : "text-secondary" %>" style="font-weight:bold;"><%= item.available? ? "販売中" : "販売停止中" %></td>
           </tr>
         <% end %>
       </tbody>

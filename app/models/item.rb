@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   validates :is_active, presence: true
   validates :genre_id, presence: true
 
+  enum is_active: { available: true, unavailable: false }
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
