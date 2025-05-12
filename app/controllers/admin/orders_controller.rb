@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      flash[:notice] = "更新しました。"
+      flash[:notice] = "ステータスを#{@order.status_i18n}に更新しました。"
       if @order.confirm_deposit?
         @order.order_details.each do |order_detail|
           order_detail.update(making_status: "pending_production")
@@ -19,7 +19,7 @@ class Admin::OrdersController < ApplicationController
       end
       redirect_to admin_order_path(@order)
     else
-      flash[:alert] = "更新に失敗しました。"
+      flash[:alert] = "ステータスの更新に失敗しました。"
       render :show
     end
   end
