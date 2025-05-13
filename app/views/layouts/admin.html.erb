@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin - NaganoCake</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/9af748410a.js" crossorigin="anonymous"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="border-bottom border-dark">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <%= link_to "LOGO", root_path, class: "navbar-brand text-center px-5 border border-dark", style: "font-size:2rem; color:black;" %>
+          <span>
+            <div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                  <% if admin_signed_in? %>
+                    <li class="nav-item">
+                      <%= link_to '商品一覧', admin_items_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to '会員一覧', admin_customers_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to '注文履歴一覧', admin_root_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to 'ジャンル一覧', admin_genres_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                  <% else %>
+                    <li class="nav-item">
+                      <%= link_to 'About', about_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to '商品一覧', items_path_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to '新規登録', new_customer_registration_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to 'ログイン', new_customer_session_path, class: "nav-link btn btn-outline-custom text-dark mr-3" %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div class="text-right mt-3">
+              <%= form_with url: admin_items_path, method: :get do |f| %>
+                <%= f.text_field :search, placeholder: "Search" %>
+                <%= f.submit %>
+              <% end %>
+            </div>
+          </span>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
+    </main>
+    <footer class="footer border-top border-dark">
+    </footer>
+  </body>
+</html>

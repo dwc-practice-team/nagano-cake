@@ -1,0 +1,93 @@
+<div class="row mt-5">
+  <div class="col-5">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4">
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+      <span>さんの会員情報編集</span>
+    </h3>
+  </div>
+</div>
+<div class="mt-5">
+  <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :id, "会員ID" %>
+      </div>
+      <div class="col-3">
+        <%= @customer.id %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :name, "氏名" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name, class: "form-control border-dark" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :name_kana, "フリガナ" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name_kana, class: "form-control border-dark" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name_kana, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :postal_code, "郵便番号" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :postal_code, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :address, "住所" %>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :address, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :telephone_number, "電話番号" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :telephone_number, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :email, class: "form-control border-dark" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 pl-5">
+        <%= f.label :is_active, "会員ステータス" %>
+      </div>
+      <div class="col-3">
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active_true, "有効", class: "text-secondary" %>
+        　
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active_false, "退会", class: "text-secondary" %>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-3 offset-3">
+        <%= f.submit "変更を保存", class: "btn btn-success px-4 py-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>

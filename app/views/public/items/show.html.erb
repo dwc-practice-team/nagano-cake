@@ -1,0 +1,45 @@
+<div class="row mt-5">
+  <%= render 'genre_search', genres: @genres %>
+  <div class="col-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+          <%= image_tag @item.get_image, class: "w-100" %>
+        </div>
+        <div class="col-7 d-flex align-items-start flex-column">
+          <div class="mb-3" style="font-size:1.75rem; font-weight:bold;">
+            <%= @item.name %>
+          </div>
+          <div class="mb-auto">
+            <%= simple_format @item.introduction %>
+          </div>
+          <div>
+            <span style="font-size:1.75rem; font-weight:bold;">
+              ￥
+            </span>
+            <span style="font-size:1.75rem; font-weight:bold;">
+              <%= @item.tax_include_price.to_s(:delimited) %>
+            </span>
+            <span>
+              (税込)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="container mt-5">
+        <div class="row">
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <div class="col-3 offset-5">
+            <%= f.select :amount, [*1..10], {include_blank: "個数選択"}, {class: "form-control ml-4"} %>
+          </div>
+          <div class="col-3 ml-5">
+            <%= f.submit "カートに入れる", class: "btn btn-success px-4" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

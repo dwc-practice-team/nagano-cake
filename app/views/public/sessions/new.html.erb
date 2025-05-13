@@ -1,0 +1,47 @@
+<div class="row mt-5">
+  <div class="col-4 offset-1">
+    <h3 class="bg-gray d-inline-block text-center fw-bold px-4 mb-5">ログイン</h3>
+  </div>
+</div>
+<div class="card border-0">
+  <div class="row card-title">
+    <div class="col-5 offset-1">
+      <h5 class="bg-gray d-inline-block text-center fw-bold px-4 ml-4 mb-3">会員の方はこちらからログイン</h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row justify-content-center mb-3">
+        <div class="col-2 offset-1 field">
+          <%= f.label :email, "メールアドレス" %>
+        </div>
+        <div class="col-6 field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control border-dark"  %>
+        </div>
+      </div>
+      <div class="row justify-content-center mb-5">
+        <div class="col-2 offset-1 field">
+          <%= f.label :password, "パスワード" %>
+        </div>
+        <div class="col-6 field">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control border-dark" %>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-4 offset-1 actions">
+          <%= f.submit "ログイン", class: "btn btn-primary px-5" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row card-title mt-5">
+    <div class="col-5 offset-1">
+      <h5 class="bg-gray d-inlilne-block text-center fw-bold px-5 ml-4">会員登録がお済みでない方</h5>
+    </div>
+  </div>
+  <div class="row card-body justify-content-center">
+    <div class="col-7 offset-2">
+      <%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>
