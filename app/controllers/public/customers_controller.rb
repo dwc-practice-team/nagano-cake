@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
   def withdraw
     current_customer.update_attribute(:is_active, 'false')
     sign_out(current_customer)
-    redirect_to new_customer_registration_path, notice: "退会しました"
+    redirect_to root_path, notice: "退会しました"
   end
 
   private
